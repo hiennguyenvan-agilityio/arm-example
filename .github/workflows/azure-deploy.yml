@@ -31,14 +31,14 @@ jobs:
 
       - name: Print environment variables
         run: |
-          echo "STORAGEPREFIX=${{ secrets.STORAGEPREFIX }}"
-          echo "STORAGESKU=${{ secrets.STORAGESKU }}"
-          echo "APPSERVICEPLANNAME=${{ secrets.APPSERVICEPLANNAME }}"
-          echo "WEBAPPNAME=${{ secrets.WEBAPPNAME }}"
-          echo "TSRESOURCEGROUP=${{ secrets.TSRESOURCEGROUP }}"
-          echo "TSNAME=${{ secrets.TSNAME }}"
-          echo "TSVERSION=${{ secrets.TSVERSION }}"
-          echo "RESOURCETAGS=${{ secrets.RESOURCETAGS }}"
+          echo "STORAGEPREFIX=${{ vars.STORAGEPREFIX }}"
+          echo "STORAGESKU=${{ vars.STORAGESKU }}"
+          echo "APPSERVICEPLANNAME=${{ vars.APPSERVICEPLANNAME }}"
+          echo "WEBAPPNAME=${{ vars.WEBAPPNAME }}"
+          echo "TSRESOURCEGROUP=${{ vars.TSRESOURCEGROUP }}"
+          echo "TSNAME=${{ vars.TSNAME }}"
+          echo "TSVERSION=${{ vars.TSVERSION }}"
+          echo "RESOURCETAGS=${{ vars.RESOURCETAGS }}"
 
       - name: "Deploy ARM Template with Parameters"
         uses: azure/arm-deploy@v2
