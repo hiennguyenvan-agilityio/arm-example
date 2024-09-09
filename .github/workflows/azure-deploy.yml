@@ -29,6 +29,17 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
+      - name: Print environment variables
+        run: |
+          echo "STORAGEPREFIX=${{ secrets.STORAGEPREFIX }}"
+          echo "STORAGESKU=${{ secrets.STORAGESKU }}"
+          echo "APPSERVICEPLANNAME=${{ secrets.APPSERVICEPLANNAME }}"
+          echo "WEBAPPNAME=${{ secrets.WEBAPPNAME }}"
+          echo "TSRESOURCEGROUP=${{ secrets.TSRESOURCEGROUP }}"
+          echo "TSNAME=${{ secrets.TSNAME }}"
+          echo "TSVERSION=${{ secrets.TSVERSION }}"
+          echo "RESOURCETAGS=${{ secrets.RESOURCETAGS }}"
+
       - name: "Deploy ARM Template with Parameters"
         uses: azure/arm-deploy@v2
         with:
