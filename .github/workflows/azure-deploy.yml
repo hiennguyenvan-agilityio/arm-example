@@ -46,7 +46,33 @@ jobs:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           resourceGroupName: ${{ vars.TARGETRESOURCEGROUP }}
           template: ./infra/azuredeploy.json
-          parameters: storagePrefix=${{ vars.STORAGEPREFIX }} storageSKU=${{ vars.STORAGESKU }} appServicePlanName=${{ vars.APPSERVICEPLANNAME }} webAppName=${{ vars.WEBAPPNAME }} tsResourceGroup=${{ vars.TSRESOURCEGROUP }} tsName=${{ vars.TSNAME }} tsVersion=${{ vars.TSVERSION }} resourceTags=${{ vars.RESOURCETAGS }}
+          parameters: |
+            {
+              "storagePrefix": {
+                "value": "${{ vars.STORAGEPREFIX }}"
+              },
+              "storageSKU": {
+                "value": "${{ vars.STORAGESKU }}"
+              },
+              "appServicePlanName": {
+                "value": "${{ vars.APPSERVICEPLANNAME }}"
+              },
+              "webAppName": {
+                "value": "${{ vars.WEBAPPNAME }}"
+              },
+              "tsResourceGroup": {
+                "value": "${{ vars.TSRESOURCEGROUP }}"
+              },
+              "tsName": {
+                "value": "${{ vars.TSNAME }}"
+              },
+              "tsVersion": {
+                "value": "${{ vars.TSVERSION }}"
+              },
+              "resourceTags": {
+                "value": "${{ vars.RESOURCETAGS }}"
+              }
+            }
           deploymentMode: Incremental
 
       - name: "Azure Logout"
