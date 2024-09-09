@@ -9,7 +9,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: blacksmith-4vcpu-ubuntu-2204
+    runs-on: ubuntu-latest
 
     # Map the branches to the corresponding GitHub environments
     environment:
