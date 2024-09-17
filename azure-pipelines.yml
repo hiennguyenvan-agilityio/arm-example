@@ -33,13 +33,5 @@ steps:
       location: $(LOCATION)
       templateLocation: "Linked artifact"
       csmFile: "./infra/azuredeploy.json"
-      overrideParameters: |
-        -storagePrefix $(STORAGE_PREFIX)
-        -storageSKU $(STORAGE_SKU)
-        -appServicePlanName $(APP_SERVICE_PLAN_NAME)
-        -webAppName $(WEBAPP_NAME)
-        -tsResourceGroup $(TS_RESOURCE_GROUP)
-        -tsName $(TS_NAME)
-        -tsVersion $(TS_VERSION)
-        -resourceTags "$(RESOURCE_TAGS)"
+      overrideParameters: -storagePrefix $(STORAGE_PREFIX) -storageSKU $(STORAGE_SKU) -appServicePlanName $(APP_SERVICE_PLAN_NAME) -webAppName $(WEBAPP_NAME) -tsResourceGroup $(TS_RESOURCE_GROUP) -tsName $(TS_NAME) -tsVersion $(TS_VERSION) -resourceTags "$(RESOURCE_TAGS)"
       deploymentMode: "Incremental"
