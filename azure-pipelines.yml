@@ -14,4 +14,3 @@ steps:
       chmod +x print_env.sh
       ./print_env.sh
     displayName: "Print env"
-    shell: bash
