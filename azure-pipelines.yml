@@ -21,37 +21,37 @@ steps:
       ./print_env.sh
     displayName: "Print env"
 
-  - displayName: "Deploy ARM Template with Parameters"
-    uses: azure/arm-deploy@v2
-    with:
-    subscriptionId: $(AZURE_SUBSCRIPTION_ID)
-    resourceGroupName: $(TARGET_RESOURCE_GROUP)
-    template: ./infra/azuredeploy.json
-    parameters: |
-      {
-        "storagePrefix": {
-          "value": "$(STORAGE_PREFIX)"
-        },
-        "storageSKU": {
-          "value": "$(STORAGE_SKU)"
-        },
-        "appServicePlanName": {
-          "value": "$(APP_SERVICE_PLAN_NAME)"
-        },
-        "webAppName": {
-          "value": "$(WEBAPP_NAME)"
-        },
-        "tsResourceGroup": {
-          "value": "$(TS_RESOURCE_GROUP)"
-        },
-        "tsName": {
-          "value": "$(TS_NAME)"
-        },
-        "tsVersion": {
-          "value": "$(TS_VERSION)"
-        },
-        "resourceTags": {
-          "value": $(RESOURCE_TAGS)
+  - task: azure/arm-deploy@v2
+    displayName: "Deploy ARM Template with Parameters"
+    inputs:
+      subscriptionId: $(AZURE_SUBSCRIPTION_ID)
+      resourceGroupName: $(TARGET_RESOURCE_GROUP)
+      template: ./infra/azuredeploy.json
+      parameters: |
+        {
+          "storagePrefix": {
+            "value": "$(STORAGE_PREFIX)"
+          },
+          "storageSKU": {
+            "value": "$(STORAGE_SKU)"
+          },
+          "appServicePlanName": {
+            "value": "$(APP_SERVICE_PLAN_NAME)"
+          },
+          "webAppName": {
+            "value": "$(WEBAPP_NAME)"
+          },
+          "tsResourceGroup": {
+            "value": "$(TS_RESOURCE_GROUP)"
+          },
+          "tsName": {
+            "value": "$(TS_NAME)"
+          },
+          "tsVersion": {
+            "value": "$(TS_VERSION)"
+          },
+          "resourceTags": {
+            "value": $(RESOURCE_TAGS)
+          }
         }
-      }
-    deploymentMode: Incremental
+      deploymentMode: Incremental
