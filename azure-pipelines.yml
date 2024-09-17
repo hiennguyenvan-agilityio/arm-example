@@ -25,7 +25,7 @@ steps:
       ls -la ./infra
     displayName: "List Files in infra Directory"
 
-  - task: AzureResourceGroupDeployment@2
+  - task: AzureResourceManagerTemplateDeployment@3
     displayName: "Deploy ARM Template with Parameters"
     inputs:
       azureSubscription: ARM example subscription
