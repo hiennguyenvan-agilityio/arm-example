@@ -21,17 +21,14 @@ steps:
       ./print_env.sh
     displayName: "Print env"
 
-  - task: AzureResourceManagerTemplateDeployment@3
+  - task: AzureResourceGroupDeployment@2
     displayName: "Deploy ARM Template with Parameters"
     inputs:
-      deploymentScope: "Resource Group"
-      azureResourceManagerConnection: "ARM example"
-      subscriptionId: $(AZURE_SUBSCRIPTION_ID)
-      action: "Create Or Update Resource Group"
+      azureSubscription: $(AZURE_SERVICE_CONNECTION) # The name of the Azure Service Connection
       resourceGroupName: $(TARGET_RESOURCE_GROUP)
       location: $(LOCATION)
       templateLocation: "Linked artifact"
-      csmFile: '$(Agent.BuildDirectory)\infra\azuredeploy.json'
+      csmFile: "./infra/azuredeploy.json"
       overrideParameters: |
         -storagePrefix $(STORAGE_PREFIX)
         -storageSKU $(STORAGE_SKU)
@@ -40,4 +37,5 @@ steps:
         -tsResourceGroup $(TS_RESOURCE_GROUP)
         -tsName $(TS_NAME)
         -tsVersion $(TS_VERSION)
+        -resourceTags "$(RESOURCE_TAGS)"
       deploymentMode: "Incremental"
