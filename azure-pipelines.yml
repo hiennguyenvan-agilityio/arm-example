@@ -31,7 +31,7 @@ steps:
       resourceGroupName: $(TARGET_RESOURCE_GROUP)
       location: $(LOCATION)
       templateLocation: "Linked artifact"
-      csmFile: "./infra/azuredeploy.json"
+      csmFile: "$(Agent.BuildDirectory)\infra\azuredeploy.json"
       overrideParameters: |
         -storagePrefix $(STORAGE_PREFIX)
         -storageSKU $(STORAGE_SKU)
