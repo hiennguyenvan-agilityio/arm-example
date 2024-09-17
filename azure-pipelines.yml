@@ -40,5 +40,4 @@ steps:
         -tsResourceGroup $(TS_RESOURCE_GROUP)
         -tsName $(TS_NAME)
         -tsVersion $(TS_VERSION)
-        -resourceTags "$(RESOURCE_TAGS)"
       deploymentMode: "Incremental"
