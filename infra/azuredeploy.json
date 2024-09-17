@@ -75,18 +75,8 @@
   "functions": [],
   "variables": {
     "uniqueString": "[uniqueString(resourceGroup().id)]",
-    "uniqueStorageName": "[
-      concat(
-        parameters('storagePrefix'),
-        variables('uniqueString')
-      )
-    ]",
-    "webAppPortalName": "[
-      concat(
-        parameters('webAppName'),
-        variables('uniqueString')
-      )
-    ]"
+    "uniqueStorageName": "[concat(parameters('storagePrefix'), variables('uniqueString'))]",
+    "webAppPortalName": "[concat(parameters('webAppName'), variables('uniqueString'))]"
   },
   "resources": [
     {
@@ -96,7 +86,6 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          // "relativePath": "artifacts/linkedStorageAccount.json"
           "id": "[resourceId(parameters('tsResourceGroup'), 'Microsoft.Resources/templateSpecs/versions', parameters('tsName'), parameters('tsVersion'))]"
         },
         "parameters": {
