@@ -21,6 +21,10 @@ steps:
       ./print_env.sh
     displayName: "Print env"
 
+  - script: |
+      ls -la ./infra
+    displayName: "List Files in infra Directory"
+
   - task: AzureResourceGroupDeployment@2
     displayName: "Deploy ARM Template with Parameters"
     inputs:
