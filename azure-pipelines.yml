@@ -21,7 +21,7 @@ steps:
       ./print_env.sh
     displayName: "Print env"
 
-  - name: "Deploy ARM Template with Parameters"
+  - displayName: "Deploy ARM Template with Parameters"
     uses: azure/arm-deploy@v2
     with:
     subscriptionId: $(AZURE_SUBSCRIPTION_ID)
