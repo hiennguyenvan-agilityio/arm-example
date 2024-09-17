@@ -28,7 +28,7 @@ steps:
   - task: AzureResourceGroupDeployment@2
     displayName: "Deploy ARM Template with Parameters"
     inputs:
-      azureSubscription: ARM example
+      azureSubscription: ARM example subscription
       resourceGroupName: $(TARGET_RESOURCE_GROUP)
       location: $(LOCATION)
       templateLocation: "Linked artifact"
