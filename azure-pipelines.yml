@@ -9,8 +9,49 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/dev') }}:
+      - group: "DevEnv"
+  - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/main') }}:
+      - group: "ProdEnv"
+
 steps:
   - script: |
       chmod +x print_env.sh
       ./print_env.sh
     displayName: "Print env"
+
+  - name: "Deploy ARM Template with Parameters"
+    uses: azure/arm-deploy@v2
+    with:
+    subscriptionId: $(AZURE_SUBSCRIPTION_ID)
+    resourceGroupName: $(TARGET_RESOURCE_GROUP)
+    template: ./infra/azuredeploy.json
+    parameters: |
+      {
+        "storagePrefix": {
+          "value": "$(STORAGE_PREFIX)"
+        },
+        "storageSKU": {
+          "value": "$(STORAGE_SKU)"
+        },
+        "appServicePlanName": {
+          "value": "$(APP_SERVICE_PLAN_NAME)"
+        },
+        "webAppName": {
+          "value": "$(WEBAPP_NAME)"
+        },
+        "tsResourceGroup": {
+          "value": "$(TS_RESOURCE_GROUP)"
+        },
+        "tsName": {
+          "value": "$(TS_NAME)"
+        },
+        "tsVersion": {
+          "value": "$(TS_VERSION)"
+        },
+        "resourceTags": {
+          "value": $(RESOURCE_TAGS)
+        }
+      }
+    deploymentMode: Incremental
